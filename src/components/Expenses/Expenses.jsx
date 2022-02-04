@@ -2,11 +2,27 @@ import React from "react";
 import Card from "../UI/Card";
 import ExpenseItem from "./ExpenseItem";
 import "./Expenses.css";
+import ExpenseFilter from "./ExpenseFilter";
 
- const Expenses = (props) => {
+const Expenses = ({ items, filterExpense }) => {
+  const filter = (selectedYear) => {
+    filterExpense(selectedYear);
+  };
+
   return (
     <Card className="expenses">
-      <ExpenseItem
+      <ExpenseFilter filterExpense={filter} />
+      {items.map((comp) => {
+        return (
+          <ExpenseItem
+            title={comp.title}
+            date={comp.date}
+            key={comp.id}
+            price={comp.price}
+          />
+        );
+      })}
+      {/* <ExpenseItem
         title={props.items[0].title}
         date={props.items[0].date}
         id={props.items[0].id}
@@ -29,7 +45,7 @@ import "./Expenses.css";
         date={props.items[3].date}
         id={props.items[3].id}
         price={props.items[3].price}
-      ></ExpenseItem>
+      ></ExpenseItem>  */}
     </Card>
   );
 };
