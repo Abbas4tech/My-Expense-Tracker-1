@@ -28,9 +28,15 @@ function App() {
       price: 37,
     },
   ];
+
+  const getSubmitedExpenseData = (dataFromNewExpense) => {
+    const getExpenseData = { ...dataFromNewExpense };
+    console.log(getExpenseData);
+  };
+
   return (
     <div>
-      <NewExpense></NewExpense>
+      <NewExpense onGettingExpenseData={getSubmitedExpenseData}></NewExpense>
       <Expenses items={expenses}></Expenses>;
     </div>
   );
