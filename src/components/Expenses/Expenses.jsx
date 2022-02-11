@@ -12,13 +12,13 @@ const Expenses = ({ items, filterExpense }) => {
   return (
     <Card className="expenses">
       <ExpenseFilter filterExpense={filter} />
-      {items.map((comp) => {
+      {items.map((expns) => {
         return (
           <ExpenseItem
-            title={comp.title}
-            date={comp.date}
-            key={comp.id}
-            price={comp.price}
+            title={expns.title}
+            date={expns.date}
+            key={expns.id}
+            price={expns.price}
           />
         );
       })}

@@ -2,7 +2,7 @@ import { useState } from "react";
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 
-const expenses = [
+const dummyExpenses = [
   {
     id: 11,
     title: "Car Parts",
@@ -11,13 +11,13 @@ const expenses = [
   },
   {
     id: 12,
-    title: "Car Parts",
+    title: "Hand Glowes",
     date: new Date(2020, 8, 3),
     price: 30,
   },
   {
     id: 13,
-    title: "Car Parts",
+    title: "Brushes",
     date: new Date(2020, 4, 27),
     price: 36,
   },
@@ -30,16 +30,16 @@ const expenses = [
 ];
 
 function App() {
-  const [newExpenseData, setNewExpenseData] = useState(expenses);
+  const [newExpenseData, setNewExpenseData] = useState(dummyExpenses);
 
   const [filteredExpenses, setfilteredExpenses] = useState([...newExpenseData]);
 
-  const getSubmitedExpenseData = (dataFromNewExpense) => {
+  const addExpenseHandler = (dataFromNewExpense) => {
     console.log(dataFromNewExpense);
 
-    setNewExpenseData((preData) => [...preData, dataFromNewExpense]);
+    setNewExpenseData((preData) => [dataFromNewExpense, ...preData]);
     if (newExpenseData.length === filteredExpenses.length) {
-      setfilteredExpenses((preData) => [...preData, dataFromNewExpense]);
+      setfilteredExpenses((preData) => [dataFromNewExpense, ...preData]);
     }
   };
   console.log(newExpenseData);
@@ -60,7 +60,7 @@ function App() {
 
   return (
     <div>
-      <NewExpense onGettingExpenseData={getSubmitedExpenseData}></NewExpense>
+      <NewExpense onGettingExpenseData={addExpenseHandler}></NewExpense>
       <Expenses
         items={filteredExpenses}
         filterExpense={filterExpenseData}
