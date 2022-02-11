@@ -12,16 +12,19 @@ const Expenses = ({ items, filterExpense }) => {
   return (
     <Card className="expenses">
       <ExpenseFilter filterExpense={filter} />
-      {items.map((expns) => {
-        return (
-          <ExpenseItem
-            title={expns.title}
-            date={expns.date}
-            key={expns.id}
-            price={expns.price}
-          />
-        );
-      })}
+      {items.length === 0 && <p>No Expenses Found!</p>}
+      {items.length > 0 &&
+        items.map((expns) => {
+          return (
+            <ExpenseItem
+              title={expns.title}
+              date={expns.date}
+              key={expns.id}
+              price={expns.price}
+            />
+          );
+        })}
+
       {/* <ExpenseItem
         title={props.items[0].title}
         date={props.items[0].date}
